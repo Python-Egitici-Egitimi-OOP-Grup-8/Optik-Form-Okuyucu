@@ -8,7 +8,7 @@ https://github.com/Udayraj123
 # Locals
 saveImgList = {}
 resetpos = [0,0]
-# for positioning image windows
+# resim pencerelerini konumlandırmak için 
 windowX,windowY = 0,0 
 
 import re
