@@ -324,7 +324,7 @@ def auto_canny(image, sigma=0.93):
     # tek kanal piksel yoğunluklarının medyanını hesapla
     v = np.median(image)
 
-    # apply automatic Canny edge detection using the computed median
+    # hesaplanan medyanı kullanarak otomatik Canny kenarı algılama uygula
     lower = int(max(0, (1.0 - sigma) * v))
     upper = int(min(255, (1.0 + sigma) * v))
     edged = cv2.Canny(image, lower, upper)
