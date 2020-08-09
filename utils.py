@@ -321,7 +321,7 @@ def validateRect(approx):
 
 
 def auto_canny(image, sigma=0.93):
-    # compute the median of the single channel pixel intensities
+    # tek kanal piksel yoğunluklarının medyanını hesapla
     v = np.median(image)
 
     # apply automatic Canny edge detection using the computed median
