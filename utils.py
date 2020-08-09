@@ -4,6 +4,9 @@ Designed and Developed by-
 Udayraj Deshmukh
 https://github.com/Udayraj123
 
+Düzenleyenler
+MEB Cisco Python Eğitici Eğitimi - Grup 8 Üyeleri
+
 """
 # Locals
 saveImgList = {}
@@ -109,7 +112,7 @@ def show(name, orig, pause=1, resize=False, resetpos=None):
 
     h, w = img.shape[:2]
 
-    # Set next window position
+    # Sonraki pencereye konumunu ayarla
     margin = 25
     w += margin
     h += margin
@@ -124,9 +127,9 @@ def show(name, orig, pause=1, resize=False, resetpos=None):
 
     if(pause):
         print(
-            "Showing '" +
+            "Gösterilen: '" +
             name +
-            "'\n\tPress Q on image to continue Press Ctrl + C in terminal to exit")
+            "'\n\tDevam etmek için resmin üzerinde Q tuşuna, programdan çıkmak için konsolda Ctrl + C basın")
         waitQ()
 
 
@@ -207,8 +210,8 @@ def getPlotImg():
 def order_points(pts):
     rect = np.zeros((4, 2), dtype="float32")
 
-    # the top-left point will have the smallest sum, whereas
-    # the bottom-right point will have the largest sum
+    # sol üst nokta en küçük toplamı alırken, 
+    # sağ alt nokta en büyük toplamı alır
     s = pts.sum(axis=1)
     rect[0] = pts[np.argmin(s)]
     rect[2] = pts[np.argmax(s)]
@@ -216,45 +219,44 @@ def order_points(pts):
     rect[1] = pts[np.argmin(diff)]
     rect[3] = pts[np.argmax(diff)]
 
-    # return the ordered coordinates
+    # sıralı koordinatları döndür
     return rect
 
 
 def four_point_transform(image, pts):
-    # obtain a consistent order of the points and unpack them
-    # individually
+    # işaretlemelerin tutarlı bir sırasını elde et
+    # ve bunları ayrı ayrı aç
     rect = order_points(pts)
     (tl, tr, br, bl) = rect
 
-    # compute the width of the new image, which will be the
+    # yeni resmin genişliğini hesapla
     widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
     widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
 
     maxWidth = max(int(widthA), int(widthB))
     # maxWidth = max(int(np.linalg.norm(br-bl)), int(np.linalg.norm(tr-tl)))
 
-    # compute the height of the new image, which will be the
+    # yeni resmin yüksekliğini hesapla
     heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
     heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
     maxHeight = max(int(heightA), int(heightB))
     # maxHeight = max(int(np.linalg.norm(tr-br)), int(np.linalg.norm(tl-br)))
 
-    # now that we have the dimensions of the new image, construct
-    # the set of destination points to obtain a "birds eye view",
-    # (i.e. top-down view) of the image, again specifying points
-    # in the top-left, top-right, bottom-right, and bottom-left
-    # order
+    # artık yeni görüntünün boyutlarına sahibiz, construct
+    # "kuş bakışı görünümü" elde etmek için resmin hedef noktalarını oluştur
+    # (örneğin sol-alt görünümü), yine sol üst, sağ üst, sağ alt ve sol alt 
+    # sıradaki noktaları belirle
     dst = np.array([
         [0, 0],
         [maxWidth - 1, 0],
         [maxWidth - 1, maxHeight - 1],
         [0, maxHeight - 1]], dtype="float32")
 
-    # compute the perspective transform matrix and then apply it
+    # perspektif dönüşüm matrisini hesapla ve ardından uygula
     M = cv2.getPerspectiveTransform(rect, dst)
     warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 
-    # return the warped image
+    # çarpık görüntüyü döndür
     return warped
 
 
@@ -298,7 +300,7 @@ def angle(p1, p2, p0):
 
 
 def checkMaxCosine(approx):
-    # assumes 4 pts present
+    # 4 işaretçinin olduğunu varsayar
     maxCosine = 0
     minCosine = 1.5
     for i in range(2, 5):
