@@ -1003,9 +1003,9 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
 
         # TODO colorama
         print(
-            "Thresholding:\t\t globalTHR: ", round(
+            "Eşik:\t\t globalTHR: ", round(
                 globalTHR, 2), "\tglobalStdTHR: ", round(
-                globalStdTHR, 2), "\t(Looks like a Xeroxed OMR)" if(
+                globalStdTHR, 2), "\t(Xerox tipi bir OMR'ye benziyor)" if(
                 globalTHR == 255) else "")
         # plt.show()
         # hist = getPlotImg()
@@ -1033,7 +1033,7 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
                 # print(totalQStripNo, qBoxPts[0].qNo, allQStdVals[totalQStripNo], "noOutliers:", noOutliers)
                 perQStripThreshold = getLocalThreshold(qBoxPts[0].qNo, allQStripArrs[totalQStripNo],
                                                        globalTHR, noOutliers,
-                                                       "Mean Intensity Histogram for " + key + "." +
+                                                       key + " için Ortalama Yoğunluk Histogramı." +
                                                        qBoxPts[0].qNo + '.' +
                                                        str(blockQStripNo),
                                                        config.showimglvl >= 6)
@@ -1117,7 +1117,7 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
         # TODO: move this validation into template.py -
         if(totalQStripNo == 0):
             print(
-                "\n\t UNEXPECTED Template Incorrect Error: totalQStripNo is zero! QBlocks: ",
+                "\n\t BEKLENMEYEN Şablon Hatası: totalQStripNo sıfır değerinde! QBlocks: ",
                 template.QBlocks)
             exit(21)
 
@@ -1158,7 +1158,7 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
         if(config.showimglvl >= 3 and final_align is not None):
             final_align = resize_util_h(final_align, int(config.display_height))
             # [final_align.shape[1],0])
-            show("Template Alignment Adjustment", final_align, 0, 0)
+            show("Şablon Hizalama Ayarı", final_align, 0, 0)
 
         # TODO: refactor "type(savedir) != type(None) "
         if (config.saveMarked and type(savedir) != type(None)):
@@ -1167,7 +1167,7 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
             saveImg(savedir + name, final_marked)
 
         if(config.showimglvl >= 1):
-            show("Final Marked Bubbles : " + name,
+            show("Son İşaretli Kabarcıklar : " + name,
                  resize_util_h(final_marked, int(config.display_height * 1.3)), 1, 1)
 
         appendSaveImg(2, final_marked)
@@ -1180,7 +1180,7 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print("Error from readResponse: ", e)
+        print("readResponse'dan gelen Hatası: ", e)
         print(exc_type, fname, exc_tb.tb_lineno)
 
 

@@ -272,7 +272,7 @@ def setup_output(paths, template):
             pd.DataFrame([ns.sheetCols], dtype=str).to_csv(
                 ns.filesObj[fileKey], quoting=QUOTE_NONNUMERIC, header=False, index=False)
         else:
-            print('Mevcut : ' % (fileName) + '%s deposuna ekleniyor')
+            print('Mevcut : ' + (fileName) + "%s deposuna ekleniyor")
             ns.filesObj[fileKey] = open(fileName, 'a')
 
     return ns
@@ -390,7 +390,7 @@ def process_files(omr_files, template, args, out):
             pd.DataFrame(
                 results_line,
                 dtype=str).T.to_csv(
-                out.filesObj["Sonuçlar"],
+                out.filesObj["Results"],
                 quoting=QUOTE_NONNUMERIC,
                 header=False,
                 index=False)
