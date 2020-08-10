@@ -500,10 +500,10 @@ def getROI(image, filename, noCropping=False):
             image_norm = resize_util(image_norm, config.uniform_width * 2)
         sheet = findPage(image_norm)
         if sheet == []:
-            print("\tError: Paper boundary not found! Should you pass --noCropping flag?")
+            print("\tHata: Sayfa sınırı bulunamadı! --noCropping parametresini kullanmalı mısınız?")
             return None
         else:
-            print("Found page corners: \t", sheet.tolist())
+            print("Sayfa köşeleri bulundu: \t", sheet.tolist())
 
         # Warp layer 1
         image_norm = four_point_transform(image_norm, sheet)
@@ -545,7 +545,7 @@ def handle_markers(image_norm, marker, curr_filename):
     if(best_scale is None):
         # TODO: Plot and see performance of marker_rescale_range
         if(config.showimglvl >= 1):
-            show('Quads', image_eroded_sub)
+            show('Dörtlüler', image_eroded_sub)
         return None
 
     optimal_marker = resize_util_h(
@@ -554,7 +554,7 @@ def handle_markers(image_norm, marker, curr_filename):
     h, w = optimal_marker.shape[:2]
     centres = []
     sumT, maxT = 0, 0
-    print("Matching Marker:\t", end=" ")
+    print("İşaretçi Eşleniyor:\t", end=" ")
     for k in range(0, 4):
         res = cv2.matchTemplate(quads[k], optimal_marker, cv2.TM_CCOEFF_NORMED)
         maxT = res.max()
@@ -564,7 +564,7 @@ def handle_markers(image_norm, marker, curr_filename):
             # avoid.
             print(
                 curr_filename,
-                "\nError: No circle found in Quad",
+                "\nHata: Dörtlüde çember bulunamadı",
                 k + 1,
                 "\n\tthresholdVar",
                 config.thresholdVar,
@@ -572,7 +572,7 @@ def handle_markers(image_norm, marker, curr_filename):
                 maxT,
                 "allMaxT",
                 allMaxT,
-                "Should you pass --noCropping flag?")
+                "--noCropping parametresini göndermeli misiniz?")
             if(config.showimglvl >= 1):
                 show("no_pts_" + curr_filename, image_eroded_sub, 0)
                 show("res_Q" + str(k + 1), res, 1)
@@ -600,7 +600,7 @@ def handle_markers(image_norm, marker, curr_filename):
             4)
         centres.append([pt[0] + w / 2, pt[1] + h / 2])
         sumT += maxT
-    print("Optimal Scale:", best_scale)
+    print("Optimal Ölçek:", best_scale)
     # analysis data
     thresholdCircles.append(sumT / 4)
 
@@ -618,7 +618,7 @@ def handle_markers(image_norm, marker, curr_filename):
         image_eroded_sub = resize_util_h(image_eroded_sub, image_norm.shape[0])
         image_eroded_sub[:, -5:] = 0
         h_stack = np.hstack((image_eroded_sub, image_norm))
-        show("Warped: " + curr_filename, resize_util(h_stack,
+        show("Çarpık: " + curr_filename, resize_util(h_stack,
                                                      int(config.display_width * 1.6)), 0, 0, [0, 0])
     # iterations : Tuned to 2.
     # image_eroded_sub = image_norm - cv2.erode(image_norm, kernel=np.ones((5,5)),iterations=2)
@@ -632,26 +632,26 @@ def getGlobalThreshold(
         sortInPlot=True,
         looseness=1):
     """
-        Note: Cannot assume qStrip has only-gray or only-white bg (in which case there is only one jump).
-              So there will be either 1 or 2 jumps.
-        1 Jump :
+        Bilgi: qStrip'in yalnızca gri veya yalnızca beyaz arkaplana sahip olduğu varsayılamaz (bu durumda yalnızca bir atlama vardır).
+              Yani 1 veya 2 atlama olacak.
+        1 Atlama :
                 ......
                 ||||||
-                ||||||  <-- risky THR
-                ||||||  <-- safe THR
+                ||||||  <-- riskli THR
+                ||||||  <-- güvenli THR
             ....||||||
             ||||||||||
 
-        2 Jumps :
+        2 Atlama :
                   ......
-                  |||||| <-- wrong THR
+                  |||||| <-- hatalı THR
               ....||||||
-              |||||||||| <-- safe THR
+              |||||||||| <-- güvenli THR
             ..||||||||||
             ||||||||||||
 
-        The abstract "First LARGE GAP" is perfect for this.
-        Current code is considering ONLY TOP 2 jumps(>= MIN_GAP) to be big, gives the smaller one
+        "First LARGE GAP" kuramı bunun için mükemmeldir.
+        Mevcut kod SADECE İLK 2 sıçramanın (> = MIN_GAP) büyük olduğunu düşünüyor, küçük olanı veriyor
 
     """
     # Sort the Q vals
@@ -691,15 +691,15 @@ def getGlobalThreshold(
         ax.bar(range(len(QVals_orig)), QVals if sortInPlot else QVals_orig)
         ax.set_title(plotTitle)
         thrline = ax.axhline(globalTHR, color='green', ls='--', linewidth=5)
-        thrline.set_label("Global Threshold")
+        thrline.set_label("Global Eşik")
         thrline = ax.axhline(thr2, color='red', ls=':', linewidth=3)
-        thrline.set_label("THR2 Line")
+        thrline.set_label("THR2 Çizgisi")
         # thrline=ax.axhline(j_low,color='red',ls='-.', linewidth=3)
         # thrline=ax.axhline(j_high,color='red',ls='-.', linewidth=3)
         # thrline.set_label("Boundary Line")
         # ax.set_ylabel("Mean Intensity")
-        ax.set_ylabel("Values")
-        ax.set_xlabel("Position")
+        ax.set_ylabel("Değerler")
+        ax.set_xlabel("Konum")
         ax.legend()
         if(plotShow):
             plt.title(plotTitle)
@@ -786,12 +786,12 @@ def getLocalThreshold(
         f, ax = plt.subplots()
         ax.bar(range(len(QVals)), QVals)
         thrline = ax.axhline(thr1, color='green', ls=('-.'), linewidth=3)
-        thrline.set_label("Local Threshold")
+        thrline.set_label("Yerel Eşik")
         thrline = ax.axhline(globalTHR, color='red', ls=':', linewidth=5)
-        thrline.set_label("Global Threshold")
+        thrline.set_label("Global Eşik")
         ax.set_title(plotTitle)
-        ax.set_ylabel("Bubble Mean Intensity")
-        ax.set_xlabel("Bubble Number(sorted)")
+        ax.set_ylabel("Kabarcık Ortalama Yoğunluğu")
+        ax.set_xlabel("Kabarcık Numarası(sıralı)")
         ax.legend()
         # TODO append QStrip to this plot-
         # appendSaveImg(6,getPlotImg())
@@ -816,7 +816,7 @@ def getLocalThreshold(
 
 
 def saveImg(path, final_marked):
-    print('Saving Image to ' + path)
+    print('Resim ' + path + 'konumuna kaydediliyor')
     cv2.imwrite(path, final_marked)
 
 
