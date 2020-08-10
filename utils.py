@@ -33,7 +33,7 @@ import config
 import template
 
 def setup_dirs(paths):
-    print('\nChecking Directories...')
+    print('\nDizinler kontrol ediliyor...')
     for _dir in [paths.saveMarkedDir]:
         if(not os.path.exists(_dir)):
             print('Created : ' + _dir)
@@ -44,21 +44,21 @@ def setup_dirs(paths):
             # os.mkdir(_dir+sl+'/_BADSCAN_')
             # os.mkdir(_dir+sl+'/_BADSCAN_'+'/stack')
         else:
-            print('Present : ' + _dir)
+            print('Mevcut : ' + _dir)
 
     for _dir in [paths.manualDir, paths.resultDir]:
         if(not os.path.exists(_dir)):
-            print('Created : ' + _dir)
+            print('Oluşturulan : ' + _dir)
             os.makedirs(_dir)
         else:
-            print('Present : ' + _dir)
+            print('Mevcut : ' + _dir)
 
     for _dir in [paths.multiMarkedDir, paths.errorsDir, paths.badRollsDir]:
         if(not os.path.exists(_dir)):
-            print('Created : ' + _dir)
+            print('Oluşturulan : ' + _dir)
             os.makedirs(_dir)
         else:
-            print('Present : ' + _dir)
+            print('Mevcut : ' + _dir)
 
 
 def waitQ():
@@ -98,7 +98,7 @@ def resize_util_h(img, u_height, u_width=None):
 def show(name, orig, pause=1, resize=False, resetpos=None):
     global windowX, windowY
     if(type(orig) == type(None)):
-        print(name, " NoneType image to show!")
+        print(name, " Gösterim için NoneType tipinde resim!")
         if(pause):
             cv2.destroyAllWindows()
         return
@@ -311,7 +311,7 @@ def checkMaxCosine(approx):
     # TODO add to plot dict
     # print(maxCosine)
     if(maxCosine >= 0.35):
-        print('Quadrilateral is not a rectangle.')
+        print('4 kenarlı her şekil dikdörtgen değildir.')
         return False
     return True
 
@@ -438,12 +438,12 @@ def getBestMatch(image_eroded_sub, marker):
             best_scale, allMaxT = s, maxT
 
     if(allMaxT < config.thresholdCircle):
-        print("\tWarning: Template matching too low! Should you pass --noCropping flag?")
+        print("\tUyarı: Şablon eşleştirme çok düşük! --noCropping parametresini de gönderebilir misiniz?")
         if(config.showimglvl>=1):
             show("res", res, 1, 0)
 
     if(best_scale is None):
-        print("No matchings for given scaleRange:", config.marker_rescale_range)
+        print("scaleRange için eşleşme yok:", config.marker_rescale_range)
     return best_scale, allMaxT
 
 
