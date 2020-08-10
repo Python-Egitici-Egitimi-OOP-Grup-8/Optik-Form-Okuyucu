@@ -86,7 +86,7 @@ def process_dir(root_dir, subdir, template):
         process_files(omr_files, template, args_local, output_set)
     elif(len(subfolders) == 0):
         # the directory should have images or be non-leaf
-        print(f'Note: No valid images or subfolders found in {curr_dir}')
+        print(f'Bilgi: {curr_dir} klasöründe geçerli bir resim veya alt klasör bulunamadı.')
 
     # recursively process subfolders
     for folder in subfolders:
@@ -101,13 +101,13 @@ def checkAndMove(error_code, filepath, filepath2):
 
     global filesMoved
     if(not os.path.exists(filepath)):
-        print('File already moved')
+        print('Dosya zaten taşındı')
         return False
     if(os.path.exists(filepath2)):
-        print('ERROR : Duplicate file at ' + filepath2)
+        print('HATA : ' + filepath2 + ' konumunda yinelenen dosya var.')
         return False
 
-    print("Moved:  " + filepath, " --> ", filepath2)
+    print("Taşındı:  " + filepath, " --> ", filepath2)
     os.rename(filepath, filepath2)
     filesMoved += 1
     return True
@@ -166,7 +166,7 @@ def evaluate(resp, squad="H", explain=False):
     marks = 0
     answers = Answers[squad]
     if(explain):
-        print('Question\tStatus \t Streak\tSection \tMarks_Update\tMarked:\tAnswer:')
+        print('Soru\tDurum \t İz\tKısım \tİşaret_Güncellemesi\tİşaretlendi:\tCevap:')
     for scheme, section in Sections[squad].items():
         sectionques = section['ques']
         prevcorrect = None
@@ -214,7 +214,7 @@ def evaluate(resp, squad="H", explain=False):
             elif('TechnoFin' in scheme):
                 currmarks = 0
             else:
-                print('Invalid Sections')
+                print('Hatalı Kısımlar')
             prevmarks = marks
             marks += currmarks
 
@@ -242,7 +242,7 @@ def evaluate(resp, squad="H", explain=False):
 
 def setup_output(paths, template):
     ns = argparse.Namespace()
-    print("\nChecking Files...")
+    print("\nDosyalar Kontrol Ediliyor...")
 
     # Include current output paths
     ns.paths = paths
@@ -265,14 +265,14 @@ def setup_output(paths, template):
 
     for fileKey, fileName in ns.filesMap.items():
         if(not os.path.exists(fileName)):
-            print("Note: Created new file: %s" % (fileName))
+            print("Bilgi: Yeni dosya oluşturuldu: %s" % (fileName))
             # still append mode req [THINK!]
             ns.filesObj[fileKey] = open(fileName, 'a')
             # Create Header Columns
             pd.DataFrame([ns.sheetCols], dtype=str).to_csv(
                 ns.filesObj[fileKey], quoting=QUOTE_NONNUMERIC, header=False, index=False)
         else:
-            print('Present : appending to %s' % (fileName))
+            print('Mevcut : ' % (fileName) + '%s deposuna ekleniyor')
             ns.filesObj[fileKey] = open(fileName, 'a')
 
     return ns
