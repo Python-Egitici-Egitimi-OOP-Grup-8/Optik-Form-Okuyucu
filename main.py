@@ -67,18 +67,18 @@ def process_dir(root_dir, subdir, template):
         if("OverrideFlags" in template.options):
             args_local.update(template.options["OverrideFlags"])
         print('\n------------------------------------------------------------------')
-        print(f'Processing directory "{curr_dir}" with settings- ')
-        print("\tTotal images       : %d" % (len(omr_files)))
-        print("\tCropping Enabled   : " + str(not args_local["noCropping"]))
-        print("\tAuto Alignment     : " + str(args_local["autoAlign"]))
-        print("\tUsing Template     : " + str(template.path) if(template) else "N/A")
-        print("\tUsing Marker       : " + str(template.marker_path)
+        print(f'"{curr_dir}" dizini ayarları ile birlikte işleniyor- ')
+        print("\tToplan resim        : %d" % (len(omr_files)))
+        print("\tKırpma Aktif        : " + str(not args_local["noCropping"]))
+        print("\tOtomatik Hizalama   : " + str(args_local["autoAlign"]))
+        print("\tKullanılan Şablon   : " + str(template.path) if(template) else "N/A")
+        print("\tKullanılan İşaretçi : " + str(template.marker_path)
               if(template.marker is not None) else "N/A")
         print('')
 
         if not template:
-            print(f'Error: No template file when processing {curr_dir}.')
-            print(f'  Place {config.TEMPLATE_FILE} in the directory or specify a template using -t.')
+            print(f'Hata: işlenirken şablon bulunamadı {curr_dir}.')
+            print(f'  Çalışma dizininde {config.TEMPLATE_FILE} dosyasını konumlandırın veya -t parametresi ile birlikte belirtin.')
             return
 
         utils.setup_dirs(paths)
