@@ -434,19 +434,19 @@ def process_files(omr_files, template, args, out):
 
     if(config.showimglvl <= 0):
         print(
-            '\nFinished Checking %d files in %.1f seconds i.e. ~%.1f minutes.' %
+            '\n%d dosyanın kontrolü %.1f saniyede ve ortalama ~%.1f dakikada tamamlandı.' %
             (filesCounter, timeChecking, timeChecking / 60))
-        print('OMR Processing Rate  :\t ~ %.2f seconds/OMR' %
+        print('Optik Okuma İşleme Hızı  :\t ~ %.2f saniye/Form' %
               (timeChecking / filesCounter))
-        print('OMR Processing Speed :\t ~ %.2f OMRs/minute' %
+        print('Optik Okuma İşleme Hızı :\t ~ %.2f Optik/dakika' %
               ((filesCounter * 60) / timeChecking))
     else:
-        print("\nTotal script time :", timeChecking, "seconds")
+        print("\nToplam komut dosyası süresi :", timeChecking, "saniye")
 
     if(config.showimglvl <= 1):
         # TODO: colorama this
         print(
-            "\nTip: To see some awesome visuals, open globals.py and increase 'showimglvl'")
+            "\İpucu: Harika görseller görüntülemek için, globals.py dosyasını açın ve 'showimglvl' değerini artırın.")
 
     #evaluate_correctness(template, out)
 
@@ -457,7 +457,7 @@ def process_files(omr_files, template, args, out):
                 x = pd.DataFrame(x)
                 print(x.describe())
                 plt.plot(range(len(x)), x)
-                plt.title("Mystery Plot")
+                plt.title("Gizemli Parsel")
                 plt.show()
             else:
                 print(x)
@@ -469,7 +469,7 @@ def evaluate_correctness(template, out):
     # TODO: TEST_FILE WOULD BE RELATIVE TO INPUT SUBDIRECTORY NOW-
     TEST_FILE = 'inputs/OMRDataset.csv'
     if(os.path.exists(TEST_FILE)):
-        print("\nStarting evaluation for: " + TEST_FILE)
+        print("\n" + TEST_FILE + ' için değerlendirme başlatılıyor')
 
         TEST_COLS = ['file_id'] + out.respCols
         y_df = pd.read_csv(
@@ -479,7 +479,7 @@ def evaluate_correctness(template, out):
         if(np.any(y_df.index.duplicated)):
             y_df_filtered = y_df.loc[~y_df.index.duplicated(keep='first')]
             print(
-                "WARNING: Found duplicate File-ids in file %s. Removed %d rows from testing data. Rows remaining: %d" %
+                "UYARI: %s dosyasında tekrarlanan dosya id'si bulundu. %d satır test verisinden çıkarıldı. Kalan satır sayısı: %d" %
                 (TEST_FILE, y_df.shape[0] - y_df_filtered.shape[0], y_df_filtered.shape[0]))
             y_df = y_df_filtered
 
@@ -496,12 +496,12 @@ def evaluate_correctness(template, out):
             y_df = y_df.loc[intersection]
             x_df['TestResult'] = (x_df == y_df).all(axis=1).astype(int)
             print(x_df.head())
-            print("\n\t Accuracy on the %s Dataset: %.6f" %
+            print("\n\t %s Veri Kümesinde Doğruluk Miktarı: %.6f" %
                   (TEST_FILE, (x_df['TestResult'].sum() / x_df.shape[0])))
         else:
             print(
-                "\nERROR: Insufficient Testing Data: Have you appended MultiMarked data yet?")
-            print("Missing File-ids: ",
+                "\nHATA: Yetersiz Test Verisi: Çoklu Seçim verilerini henüz eklemediniz mi?")
+            print("Eksik Dosya-id'leri bildisi: ",
                   list(x_df.index.difference(intersection)))
 
 
