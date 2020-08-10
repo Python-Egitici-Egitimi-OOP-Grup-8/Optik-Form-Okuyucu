@@ -355,7 +355,7 @@ def process_files(omr_files, template, args, out):
         if(args["setLayout"]):
             templateLayout = utils.drawTemplateLayout(
                 OMRCrop, template, shifted=False, border=2)
-            utils.show("Template Layout", templateLayout, 1, 1)
+            utils.show("Şablon Yerleşimi", templateLayout, 1, 1)
             continue
 
         # uniquify
@@ -367,7 +367,7 @@ def process_files(omr_files, template, args, out):
 
         # concatenate roll nos, set unmarked responses, etc
         resp = processOMR(template, OMRresponseDict)
-        print("\nRead Response: \t", resp)
+        print("\nYanıtı Oku: \t", resp)
 
         #This evaluates and returns the score attribute
         # TODO: Automatic scoring
@@ -390,16 +390,16 @@ def process_files(omr_files, template, args, out):
             pd.DataFrame(
                 results_line,
                 dtype=str).T.to_csv(
-                out.filesObj["Results"],
+                out.filesObj["Sonuçlar"],
                 quoting=QUOTE_NONNUMERIC,
                 header=False,
                 index=False)
-            print("[%d] Graded with score: %.2f" %
+            print("[%d] Aldığı puan: %.2f" %
                   (filesCounter, score), '\t file_id: ', file_id)
             # print(filesCounter,file_id,resp['Roll'],'score : ',score)
         else:
             # MultiMarked file
-            print('[%d] MultiMarked, moving File: %s' %
+            print('[%d] Çoklu Seçim, dosya taşınıyor: %s' %
                   (filesCounter, file_id))
             newfilepath = out.paths.multiMarkedDir + filename
             if(checkAndMove(config.MULTI_BUBBLE_WARN, filepath, newfilepath)):
@@ -422,15 +422,15 @@ def process_files(omr_files, template, args, out):
 
     timeChecking = round(time() - start_time, 2) if filesCounter else 1
     print('')
-    print('Total files moved        : %d ' % (filesMoved))
-    print('Total files not moved    : %d ' % (filesNotMoved))
+    print('Taşınan dosya sayısı        : %d ' % (filesMoved))
+    print('Taşınmayan dosya sayısı    : %d ' % (filesNotMoved))
     print('------------------------------')
     print(
-        'Total files processed    : %d (%s)' %
+        'Çalışılan dosya sayısı    : %d (%s)' %
         (filesCounter,
-         'Sum Tallied!' if filesCounter == (
+         'Toplam Çeteleniyor!' if filesCounter == (
              filesMoved +
-             filesNotMoved) else 'Not Tallying!'))
+             filesNotMoved) else 'Çetelenmiş Değil!'))
 
     if(config.showimglvl <= 0):
         print(
