@@ -367,7 +367,7 @@ def process_files(omr_files, template, args, out):
 
         # concatenate roll nos, set unmarked responses, etc
         resp = processOMR(template, OMRresponseDict)
-        print("\nYanıtı Oku: \t", resp)
+        print("\nOkunan Yanıtlar: \t", resp)
 
         #This evaluates and returns the score attribute
         # TODO: Automatic scoring

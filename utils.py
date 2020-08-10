@@ -816,7 +816,7 @@ def getLocalThreshold(
 
 
 def saveImg(path, final_marked):
-    print('Resim ' + path + 'konumuna kaydediliyor')
+    print('Resim ' + path + ' konumuna kaydediliyor')
     cv2.imwrite(path, final_marked)
 
 
