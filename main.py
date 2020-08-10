@@ -500,7 +500,7 @@ def evaluate_correctness(template, out):
                   (TEST_FILE, (x_df['TestResult'].sum() / x_df.shape[0])))
         else:
             print(
-                "\nHATA: Yetersiz Test Verisi: Çoklu Seçim verilerini henüz eklemediniz mi?")
+                "\nHATA: Yetersiz Test Verisi: Çoklu Seçim verilerini henüz eklemediniz mi ?")
             print("Eksik Dosya-id'leri bildisi: ",
                   list(x_df.index.difference(intersection)))
 
