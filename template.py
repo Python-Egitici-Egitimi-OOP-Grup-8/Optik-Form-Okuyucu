@@ -53,6 +53,14 @@ qtype_data = {
         'vals': range(10),
         'orient': 'V'
     },
+    'QTYPE_SINAVKODU': {
+        'vals': range(10),
+        'orient': 'V'
+    },
+    'QTYPE_TCKIMLIKNO': {
+        'vals': range(10),
+        'orient': 'V'
+    },
     'QTYPE_INT': {
         'vals': range(10),
         'orient': 'V'

@@ -1,5 +1,5 @@
 # OMR Checker
-Grade exams fast and accurately using a scanner 🖨 or your phone 🤳. 
+Optik formları tarayıcınızı 🖨 veya cep telefonunuzu 🤳 kullanarak tarayıp okutun. 
 
 [![HitCount](http://hits.dwyl.io/udayraj123/OMRchecker.svg)](http://hits.dwyl.io/udayraj123/OMRchecker)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg)](https://github.com/Udayraj123/OMRChecker/wiki/TODOs)
