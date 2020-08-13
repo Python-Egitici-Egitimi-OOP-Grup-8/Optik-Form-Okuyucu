@@ -4,8 +4,8 @@
     1999
   ],
   "BubbleDimensions": [
-    43,
-    43
+    50,
+    50
   ],
   "Options": {
     "Marker": {
@@ -91,16 +91,16 @@
     "Roll1": {
       "qType": "QTYPE_SINAVKODU",
       "orig": [
-        102,
-        297
+        106,
+        301
       ],
       "bigGaps": [
         128,
         11
       ],
       "gaps": [
-        59,
-        63
+        57,
+        62
       ],
       "qNos": [
         [
@@ -118,16 +118,16 @@
     "Roll2": {
       "qType": "QTYPE_TCKIMLIKNO",
       "orig": [
-        564,
-        303
+        563,
+        302
       ],
       "bigGaps": [
         115,
         11
       ],
       "gaps": [
-        58,
-        63
+        57,
+        62
       ],
       "qNos": [
         [
@@ -150,16 +150,16 @@
     "Mcq1": {
       "qType": "QTYPE_MCQ5",
       "orig": [
-        1376,
-        234
+        1375,
+        233
       ],
       "bigGaps": [
         115,
         181
       ],
       "gaps": [
-        60,
-        60
+        57,
+        62
       ],
       "qNos": [
         [
@@ -196,16 +196,16 @@
     "Mcq2": {
       "qType": "QTYPE_MCQ5",
       "orig": [
-        1744,
-        234
+        1743,
+        233
       ],
       "bigGaps": [
         115,
         181
       ],
       "gaps": [
-        60,
-        60
+        57,
+        62
       ],
       "qNos": [
         [
