@@ -534,21 +534,21 @@ argparser.add_argument(
     action='store_true',
     help="Set up OMR template layout - modify your json file and run again until the template is set.")
 argparser.add_argument("-i", "--inputDir", required=False, action='append',
-                       dest='input_dir', help="Specify an input directory.")
+                       dest='input_dir', help="Girdi dizinini belirtin.")
 argparser.add_argument("-o", "--outputDir", default='outputs', required=False,
-                       dest='output_dir', help="Specify an output directory.")
+                       dest='output_dir', help="Çıktı dizinini belirtin.")
 argparser.add_argument(
     "-t",
     "--template",
     required=False,
     dest='template',
-    help="Specify a default template if no template file in input directories.")
+    help="input dizinlerinde şablon json dosyası olmadığında kullanılacak, varsayılan şablon json dosyasını tanımlayın.")
 
 
 args, unknown = argparser.parse_known_args()
 args = vars(args)
 if(len(unknown) > 0):
-    print("\nError: Unknown arguments:", unknown)
+    print("\nHata: Bilinmeyen parametre:", unknown)
     argparser.print_help()
     exit(11)
 

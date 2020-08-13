@@ -1,10 +1,21 @@
 """
 
+Bu forku Düzenleyenler
+MEB Cisco Python Eğitici Eğitimi - Grup 8 Üyeleri
+
+
+
+Ana Proje
+--------------------------------
 Designed and Developed by-
-Udayraj Deshmukh 
+Udayraj Deshmukh
 https://github.com/Udayraj123
 
+--------------------------------
+
 """
+
+
 
 """
 Constants

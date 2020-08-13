@@ -1,11 +1,17 @@
 """
 
+Bu forku Düzenleyenler
+MEB Cisco Python Eğitici Eğitimi - Grup 8 Üyeleri
+
+
+
+Ana Proje
+--------------------------------
 Designed and Developed by-
 Udayraj Deshmukh
 https://github.com/Udayraj123
 
-Düzenleyenler
-MEB Cisco Python Eğitici Eğitimi - Grup 8 Üyeleri
+--------------------------------
 
 """
 # Locals
@@ -1141,7 +1147,10 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
                 "Int": "Integer",
                 "Mcq": "MCQ",
                 "Med": "MED",
-                "Rol": "Roll"}
+                "Rol": "Roll",
+                "SinavKodu": "SinavKodu",
+                "TCKimlikNo": "TCKimlikNo"
+                }
             for k, boxvals in allCBoxvals.items():
                 axes[ctr].title.set_text(typeName[k] + " Type")
                 axes[ctr].boxplot(boxvals)

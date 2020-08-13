@@ -14,25 +14,26 @@
     }
   },
   "Concatenations": {
-    "Roll": [
-      "Squad",
-      "roll0",
-      "roll1",
-      "roll2",
-      "roll3",
-      "roll4",
-      "roll5",
-      "roll6",
-      "roll7",
-      "roll8",
-      "roll9",
-      "roll10",
-      "roll11",
-      "roll12",
-      "roll13",
-      "roll14",
-      "roll15",
-      "roll16"
+    "SINAVKODU": [
+      "sinavkodu11",
+      "sinavkodu12",
+      "sinavkodu13",
+      "sinavkodu14",
+      "sinavkodu15",
+      "sinavkodu16"
+    ],
+    "TCKIMLIKNO": [
+      "tckimlikno0",
+      "tckimlikno1",
+      "tckimlikno2",
+      "tckimlikno3",
+      "tckimlikno4",
+      "tckimlikno5",
+      "tckimlikno6",
+      "tckimlikno7",
+      "tckimlikno8",
+      "tckimlikno9",
+      "tckimlikno10"
     ]
   },
   "Singles": [
@@ -88,7 +89,7 @@
     "q50"
   ],
   "QBlocks": {
-    "Roll1": {
+    "SinavKodu": {
       "qType": "QTYPE_SINAVKODU",
       "orig": [
         106,
@@ -105,17 +106,17 @@
       "qNos": [
         [
           [
-            "roll11",
-            "roll12",
-            "roll13",
-            "roll14",
-            "roll15",
-            "roll16"
+            "sinavkodu11",
+            "sinavkodu12",
+            "sinavkodu13",
+            "sinavkodu14",
+            "sinavkodu15",
+            "sinavkodu16"
           ]
         ]
       ]
     },
-    "Roll2": {
+    "TCKimlikNo": {
       "qType": "QTYPE_TCKIMLIKNO",
       "orig": [
         563,
@@ -132,17 +133,17 @@
       "qNos": [
         [
           [
-            "roll0",
-            "roll1",
-            "roll2",
-            "roll3",
-            "roll4",
-            "roll5",
-            "roll6",
-            "roll7",
-            "roll8",
-            "roll9",
-            "roll10"
+            "tckimlikno0",
+            "tckimlikno1",
+            "tckimlikno2",
+            "tckimlikno3",
+            "tckimlikno4",
+            "tckimlikno5",
+            "tckimlikno6",
+            "tckimlikno7",
+            "tckimlikno8",
+            "tckimlikno9",
+            "tckimlikno10"
           ]
         ]
       ]
