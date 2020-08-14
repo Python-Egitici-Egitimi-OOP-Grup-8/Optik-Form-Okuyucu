@@ -4,10 +4,10 @@ Masaüstü Yazılımı hazırlanacak
 	Yazılım kullanıcıdan optik formların dizinini ve çıktı dizinini, işlemin production mı debug mı olduğunu, optik taramanın cep telefonundan mı yoksa tarayıcıdan mı yapıldığını, optik formların tanıtım şablonunun lokasyonunu (template.json) ve çıktı dosyayı nereye kaydedeceğini isteyecek.
 	Kullanıcı seçimine göre main.py scripti --setLayout , --autoAlign , --noCropping , --inputDir , --outputDir , --template (https://github.com/Udayraj123/OMRChecker/wiki/User-Guide) parametreleri ile birlikte çalıştırılarak optik okuma işlemi başlatılacak.
 	Optik okuma işlemi hatasız tamamlandığında üretilmiş olan csv dosyasının json formatına dönüştürülüp webe gönderimi sağlanacak.
-main.py scripti arayüz kullanıcı seçimine göre, işaretli optik formları okuyacak.
-	İşaretli optik formların yer aldığı dizinde optik okuma işlemi gerçekleştirilecek.
-		Optik formlar için bir deneme şablonu oluşturulacak.
-		Deneme şablonu çıktı alınıp işaretleme yapılacak.
-		İşaretlenmiş optik formların fotoğrafı çekilip projeye aktarılacak.
-		Optik form şablonuna özel template.json dosyası inşa edilecek.
+main.py scripti arayüz kullanıcı seçimine göre, işaretli optik formları okuyacak.(tamamlandı ancak iyileştirilmesi gerekiyor)
+	İşaretli optik formların yer aldığı dizinde optik okuma işlemi gerçekleştirilecek.(tamamlandı)
+		Optik formlar için bir deneme şablonu oluşturulacak.(tamamlandı)
+		Deneme şablonu çıktı alınıp işaretleme yapılacak.(tamamlandı)
+		İşaretlenmiş optik formların fotoğrafı çekilip projeye aktarılacak.(tamamlandı)
+		Optik form şablonuna özel template.json dosyası inşa edilecek.(tamamlandı)
 	Optik okumada olası meydana gelen hatalar masaüstü yazılımda kullanıcıya gösterilecek.
