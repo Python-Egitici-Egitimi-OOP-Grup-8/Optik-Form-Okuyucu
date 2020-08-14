@@ -69,7 +69,7 @@ def setup_dirs(paths):
 
 def waitQ():
     ESC_KEY = 27
-    while(cv2.waitKey(1) & 0xFF not in [ord('q'), ESC_KEY]):
+    while(cv2.waitKey(1) & 0xFF not in [ord('q'), ord('Q'), ESC_KEY]):
         pass
     cv2.destroyAllWindows()
 
