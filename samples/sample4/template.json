@@ -10,7 +10,7 @@
   "Options": {
     "Marker": {
       "RelativePath": "omr_marker.jpg",
-      "SheetToMarkerWidthRatio": 17
+      "SheetToMarkerWidthRatio" : 17
     },
     "OverrideFlags": {
       "noCropping": true
