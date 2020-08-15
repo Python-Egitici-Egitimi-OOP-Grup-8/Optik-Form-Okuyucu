@@ -25,6 +25,12 @@ python -m pip install --user -r requirements.txt
 	```
 	
 2. Optik okuma scriptini çalıştırabilirsiniz: 
+
+	```bash
 	# Note: main.py scripti, içinde açıklamaları da yer alan --setLayout , --autoAlign , --noCropping , --inputDir , --outputDir , --template parametreleriyle de çalıştırılabilir. AnaEkranIslemleri scripti bu parametreleri arayüz ile uygulamak içindir.
-	**` python main.py `**
+    ```
+
+	```bash
+    python main.py
+    ```
 
