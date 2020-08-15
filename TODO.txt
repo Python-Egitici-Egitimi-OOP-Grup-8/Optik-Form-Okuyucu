@@ -1,7 +1,14 @@
 Optik Okuyucu OMR Ekibi - TODO Listesi
 -----------------------------------------------
 Masaüstü Yazılımı hazırlanacak
-	Yazılım kullanıcıdan optik formların dizinini ve çıktı dizinini, işlemin production mı debug mı olduğunu, optik taramanın cep telefonundan mı yoksa tarayıcıdan mı yapıldığını, optik formların tanıtım şablonunun lokasyonunu (template.json) ve çıktı dosyayı nereye kaydedeceğini isteyecek.
+	Yazılım kullanıcıdan optik formların dizinini ve çıktı 
+	dizinini, işlemin production mı debug mı olduğunu, 
+	optik taramanın cep telefonundan mı yoksa tarayıcıdan mı yapıldığını, 
+	optik formların tanıtım şablonunun lokasyonunu (template.json) ve 
+	çıktı dosyayı nereye kaydedeceğini isteyecek.
+
+(Celal Aksu) Buraya kadar olan kısmı hazırladım. Değerleri alan fonksiyonları yazdım. Çalışır durumdalar.
+
 	Kullanıcı seçimine göre main.py scripti --setLayout , --autoAlign , --noCropping , --inputDir , --outputDir , --template (https://github.com/Udayraj123/OMRChecker/wiki/User-Guide) parametreleri ile birlikte çalıştırılarak optik okuma işlemi başlatılacak.
 	Optik okuma işlemi hatasız tamamlandığında üretilmiş olan csv dosyasının json formatına dönüştürülüp webe gönderimi sağlanacak.
 main.py scripti arayüz kullanıcı seçimine göre, işaretli optik formları okuyacak.(tamamlandı ancak iyileştirilmesi gerekiyor)
