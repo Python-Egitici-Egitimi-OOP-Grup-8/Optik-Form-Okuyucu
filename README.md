@@ -2,7 +2,7 @@
 Optik formları tarayıcınızı 🖨 veya cep telefonunuzu 🤳 kullanarak tarayıp okutun. 
 
 ## Telif Hakkı
-Bu proje, GNU Genel Erişim Lisansı ile dağıtılan ve kökü Udayraj Deshmukh tarafından oluşturulup https://github.com/Udayraj123 sayfasında dağıtılmakta olan projeden ayrılarak yine aynı lisanslama modeli ile dağıtılmaktadır.
+Bu proje, GNU Genel Erişim Lisansı ile dağıtılan ve kökü **Udayraj Deshmukh** tarafından oluşturulup https://github.com/Udayraj123 sayfasında dağıtılmakta olan projeden ayrılarak yine aynı lisanslama modeli ile dağıtılmaktadır.
 
 ### Desteklenen İşletim Sistemi
 Windows işletim destekleniyor olsa da, hatadan arınmış bir deneyim için **Linux** tavsiye edilir.
@@ -18,19 +18,16 @@ python -m pip install --user -r requirements.txt
 
 ### Programı Çalıştırma
 
-1. Optik formlarınızın ve şablon json dosyanızın olduğu klasörü inputs dizinine taşıyın. Örnek kullanım için aşağıdaki yöntemi kullanabilirsiniz: 
+1. Optik formlarınızın ve şablon json dosyanızın olduğu klasörü inputs dizinine taşıyın (Örnek kullanım için aşağıdaki yöntemi kullanabilirsiniz): 
 	```bash
-	# Note: inputs dizininde önceden kalma dosyaları öncelikle silmelisiniz. 
+	# Bilgi: inputs dizininde önceden kalma dosyaları öncelikle silmelisiniz. 
 	cp -r ./ornekler/taslak1 inputs/
 	```
 	
-2. Optik okuma scriptini çalıştırabilirsiniz: 
+2. Optik okuma scriptini çalıştırın: 
 
 	```bash
-	# Note: main.py scripti, içinde açıklamaları da yer alan --setLayout , --autoAlign , --noCropping , --inputDir , --outputDir , --template parametreleriyle de çalıştırılabilir. AnaEkranIslemleri scripti bu parametreleri arayüz ile uygulamak içindir.
-    ```
-
-	```bash
+	# Bilgi: main.py scripti, içinde açıklamaları da yer alan --setLayout , --autoAlign , --noCropping , --inputDir , --outputDir , --template parametreleriyle de çalıştırılabilir. AnaEkranIslemleri scripti bu parametreleri arayüz ile uygulamak içindir.
     python main.py
     ```
 
