@@ -7,6 +7,15 @@ Bu proje, GNU Genel Erişim Lisansı ile dağıtılan ve kökü **Udayraj Deshmu
 ### Desteklenen İşletim Sistemi
 Windows işletim destekleniyor olsa da, hatadan arınmış bir deneyim için **Linux** tavsiye edilir.
 
+### Bağımlılıkların Kurulumu
+```bash
+python -m pip install --user --upgrade pip
+python -m pip install --user opencv-python
+python -m pip install --user opencv-contrib-python
+```
+> **Bilgi:** Linux işletim sisteminde çalışırken bazı kütüphanelerin yüklenmesi gerekebilir.
+
+
 #### Derleme İçin Gerekli Kütüphaneler ve Kurulumu
 ![imutils 0.5.2](https://img.shields.io/badge/imutils-0.5.2-blue.svg) ![matplotlib 3.0.2](https://img.shields.io/badge/matplotlib-3.0.2-blue.svg) ![pandas 0.24.0](https://img.shields.io/badge/pandas-0.24.0-blue.svg) ![numpy 1.16.0](https://img.shields.io/badge/numpy-1.16.0-blue.svg)
 
