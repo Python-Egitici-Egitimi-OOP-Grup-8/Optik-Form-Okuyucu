@@ -1,8 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import QApplication as QA, QMainWindow as QMW, QFileDialog as QFD
 from PyQt5 import  uic
 
-class App(QMainWindow):
+class App(QMW):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -10,6 +10,16 @@ class App(QMainWindow):
     def initUI(self):
         # Formun yüklenmesi
         self.win = uic.loadUi(r"OFOAnaEkran.ui")
+
+        #text objelerinin metinlerini sıfırla
+        self.win.lblFormKlasor.setText("")
+        self.win.lblCiktiKlasor.setText("")
+        self.win.lblSablonDosya.setText("")
+        self.win.lblKaynakSonuc.setText("")
+        self.win.lblIslemSonuc.setText("")
+        self.win.lblFormOkuSonuc.setText("")
+        self.win.lblSunucuGonderSonuc.setText("")
+
         # Klasör seç düğmesine metodun bağlanması
         self.win.btnFormKlasorSec.clicked.connect(self.formKlasorSec)
 
@@ -28,18 +38,18 @@ class App(QMainWindow):
 
     def formKlasorSec(self):
         
-        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz",r"ornekler\taslak1\isaretliformlar")
+        self.dir_path=QFD.getExistingDirectory(self,"Klasör Seçiniz",r"ornekler\taslak1\isaretliformlar")
         
         self.win.lblFormKlasor.setText(self.dir_path)
 
     def ciktiKlasorSec(self):
         
-        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz",r"outputs\sample1\isaretliformlar")
+        self.dir_path=QFD.getExistingDirectory(self,"Klasör Seçiniz",r"outputs\sample1\isaretliformlar")
         
         self.win.lblCiktiKlasor.setText(self.dir_path)
 
     def sablonDosyaSec(self):
-        sablonDosyasi = QFileDialog.getOpenFileName(self, "Şablon dosyasını seç",r"ornekler\taslak1", "Şablon dosyaları (*.json)")
+        sablonDosyasi = QFD.getOpenFileName(self, "Şablon dosyasını seç",r"ornekler\taslak1", "Şablon dosyaları (*.json)")
         self.win.lblSablonDosya.setText(sablonDosyasi[0])
 
     def kaynakSec(self, rb):
@@ -65,7 +75,7 @@ class App(QMainWindow):
         # self.win.lblKaynakSonuc.setText("oldu")
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QA(sys.argv)
     uyg = App()
     # uyg.show()
     # Uygulamanın bitişi sistemden çıkışa bağlanır.
