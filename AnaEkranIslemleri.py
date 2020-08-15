@@ -28,18 +28,18 @@ class App(QMainWindow):
 
     def formKlasorSec(self):
         
-        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz")
+        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz",r"ornekler\taslak1\isaretliformlar")
         
         self.win.lblFormKlasor.setText(self.dir_path)
 
     def ciktiKlasorSec(self):
         
-        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz")
+        self.dir_path=QFileDialog.getExistingDirectory(self,"Klasör Seçiniz",r"outputs\sample1\isaretliformlar")
         
         self.win.lblCiktiKlasor.setText(self.dir_path)
 
     def sablonDosyaSec(self):
-        sablonDosyasi = QFileDialog.getOpenFileName(self, "Şablon dosyasını seç","C:\\", "Şablon dosyaları (*.json)")
+        sablonDosyasi = QFileDialog.getOpenFileName(self, "Şablon dosyasını seç",r"ornekler\taslak1", "Şablon dosyaları (*.json)")
         self.win.lblSablonDosya.setText(sablonDosyasi[0])
 
     def kaynakSec(self, rb):
