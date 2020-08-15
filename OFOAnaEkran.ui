@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>531</height>
+    <width>610</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Cisco &#38; MEB - Python Eğitici Eğitimi - Grup 8 Bitirme Projesi: Optik Form Okuyucu</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="formLayoutWidget">
