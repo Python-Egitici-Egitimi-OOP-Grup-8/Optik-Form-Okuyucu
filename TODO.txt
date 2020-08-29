@@ -18,3 +18,8 @@ main.py scripti arayüz kullanıcı seçimine göre, işaretli optik formları o
 		İşaretlenmiş optik formların fotoğrafı çekilip projeye aktarılacak.(tamamlandı)
 		Optik form şablonuna özel template.json dosyası inşa edilecek.(tamamlandı)
 	Optik okumada olası meydana gelen hatalar masaüstü yazılımda kullanıcıya gösterilecek.
+
+
+	Proje ana hatlarıyla çalışır durumda.
+	Sadece göndermek için kullanılan csv dosyası sabittir. (veriVeGirisIslemleri.py - 62. satır)
+	Örnek formalardaki sınav ve tckimlik no bilgileri uyuşmadığı için
