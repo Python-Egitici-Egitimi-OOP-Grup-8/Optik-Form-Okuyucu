@@ -558,5 +558,11 @@ if args['template']:
 if args['input_dir'] is None:
     args['input_dir'] = ['inputs']
 
-for root in args['input_dir']:
-    process_dir(root, '', args['template'])
+# for root in args['input_dir']:
+#     process_dir(root, '', args['template'])
+
+def formlariIsle(form_kaynak_dizin):
+    #for root in ['ornekler']:
+    args['input_dir'] = [form_kaynak_dizin]
+    for root in args['input_dir']:
+        process_dir(root, '', args['template'])
