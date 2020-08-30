@@ -6,7 +6,8 @@ import main
 import os
 import shutil
 
-import sunucudosya.veriVeGirisIslemleri as VGI
+# import sunucudosya.veriVeGirisIslemleri as VGI
+from sunucudosya.veriVeGirisIslemleri import GirisVeSunucuIslemleri as VGI
 
 class App(QMW):
     form_kaynak_dizin = ""
