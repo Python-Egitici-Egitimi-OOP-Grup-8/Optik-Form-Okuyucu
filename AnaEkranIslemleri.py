@@ -6,10 +6,17 @@ import main
 import os
 import shutil
 
+# import sunucudosya.veriVeGirisIslemleri as VGI
+from sunucudosya.veriVeGirisIslemleri import GirisVeSunucuIslemleri as VGI
+
 class App(QMW):
     form_kaynak_dizin = ""
     output_dir = ""
     template = ""
+
+    kullanici_adi = ""
+    parola = ""
+    token = ""
 
     def __init__(self):
         super().__init__()
@@ -18,6 +25,7 @@ class App(QMW):
     def initUI(self):
         # Formun yüklenmesi
         self.win = uic.loadUi(r"OFOAnaEkran.ui")
+        self.girisEkrani = uic.loadUi(r"GirisEkrani.ui")
 
         #text objelerinin metinlerini sıfırla
         self.win.lblFormKlasor.setText("")
@@ -45,9 +53,35 @@ class App(QMW):
         self.win.rdBtnDebug.toggled.connect(lambda:self.islemTurSec(self.win.rdBtnDebug))
 
         self.win.btnFormOku.clicked.connect(self.FormIsle)
+        self.win.btnSunucuyaGonder.clicked.connect(self.sunucuyaGonder)
+
+        #text objelerinin metinlerini sıfırla
+        self.girisEkrani.lnedtKullaniciAdi.setText("")
+        self.girisEkrani.lnedtParola.setText("")
+
+        self.girisEkrani.btnGirisYap.clicked.connect(self.girisYap)
 
         # Ekranda pencerenin gösterilmesi
         self.win.show()
+        self.girisEkrani.show()
+        self.win.hide()
+
+    def girisYap(self):
+
+        self.kullanici_adi = self.girisEkrani.lnedtKullaniciAdi.text()
+        self.parola = self.girisEkrani.lnedtParola.text()
+
+        if self.kullanici_adi != "" and self.parola != "":
+            print(self.kullanici_adi, self.parola)
+            token = VGI.girisVeTokenAl(self.kullanici_adi, str(self.parola))
+            print("gelen değerler ve türü",token, type(token))
+            if token == 0:
+                print("Kullanıcı adını ve parolasını yanlış girdiniz.")
+            else:
+                self.girisEkrani.hide()
+                self.win.show()
+                self.token = token
+                print("en son yazdırılan token", token)
 
     # Kullanıcı formların bulunduğu dizini seçer. Seçilen dizin içerisindeki diğer öğelerle inputs dizinine kopyalanır.
     # Eğer kullanıcının seçtiği dizin inputs dizininde varsa eski dizini siler, yeni dizini kopyalar
@@ -152,6 +186,9 @@ class App(QMW):
         main.formlariIsle(self.form_kaynak_dizin)
         # self.win.lblFormOkuSonuc.setText(self.root_dir)
         # main2.process_dir(self.root_dir, '', self.template)
+
+    def sunucuyaGonder(self):
+        VGI.sonuclariGonder(main.args) 
 
 if __name__ == "__main__":
     app = QA(sys.argv)
