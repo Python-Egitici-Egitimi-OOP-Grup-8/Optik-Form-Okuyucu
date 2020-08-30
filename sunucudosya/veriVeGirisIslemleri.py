@@ -7,8 +7,6 @@ from time import localtime, strftime, time
 import csv
 import config
 
-Giris_API = "http://sahinmansuroglu.pythonanywhere.com/restapi/login"
-API_ENDPOINT="http://sahinmansuroglu.pythonanywhere.com/restapi/ogrencicevapekle"
 from abc import ABC, abstractmethod
 
 class GirisVeSunucuIslemleri(ABC):
