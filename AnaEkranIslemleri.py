@@ -138,8 +138,7 @@ class App(QMW):
                 hedef_marker_jpg = self.form_kaynak_dizin
                 sonuc = shutil.copy(kaynak_marker_jpg, hedef_marker_jpg)
 
-                self.win.lblSablonDosya.setText("Kopyalandı")
-				
+                self.win.lblSablonDosya.setText("Kopyalandı")				
         if rb.text() == "Özel":
             if rb.isChecked() == True:
                 self.win.btnSablonSec.setEnabled(True)
@@ -162,8 +161,7 @@ class App(QMW):
     def kaynakSec(self, rb):
         if rb.text() == "Tarayıcıdan alındı":
             if rb.isChecked() == True:
-                self.win.lblKaynakSonuc.setText("Tarayıcı")
-				
+                self.win.lblKaynakSonuc.setText("Tarayıcı")				
         if rb.text() == "Fotoğrafı çekildi.":
             if rb.isChecked() == True:
                 self.win.lblKaynakSonuc.setText("Fotoğraf")
@@ -173,8 +171,7 @@ class App(QMW):
     def islemTurSec(self, rb):
         if rb.text() == "Production":
             if rb.isChecked() == True:
-                self.win.lblIslemSonuc.setText("Production")
-				
+                self.win.lblIslemSonuc.setText("Production")				
         if rb.text() == "Debug":
             if rb.isChecked() == True:
                 self.win.lblIslemSonuc.setText("Debug")
