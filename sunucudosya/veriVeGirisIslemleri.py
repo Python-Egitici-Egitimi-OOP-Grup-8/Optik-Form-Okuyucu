@@ -41,8 +41,8 @@ class GirisVeSunucuIslemleri(ABC):
             return cls.kullaniciToken
         else:
             return 0
+      
         
-
     @classmethod
     def sonuclariGonder(cls, args):
         # birden faza işaretlemenin yapıldığı sonuçlar MultimarkedFiles_.csv dosyasına yazılıyor
@@ -61,10 +61,10 @@ class GirisVeSunucuIslemleri(ABC):
         subdir = ''
         timeNowHrs = strftime("%I%p", localtime())
         paths = config.Paths(os.path.join(args['output_dir'], subdir))
-        csvDosyaYolu = paths.resultDir + 'Results_' + timeNowHrs + '.csv'
+        csvDosyaYolu = paths.resultDir + 'Results' + '.csv'
         # ---
 
-        csvDosyaYolu = "outputs/Results/Results_01AM.csv"
+        # csvDosyaYolu = "outputs/Results/Results_01AM.csv"
 
         print("sonuc dosya yolu verivegirisislemerinden ", csvDosyaYolu)
 
