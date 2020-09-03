@@ -6,6 +6,7 @@ from requests.auth import HTTPBasicAuth
 from time import localtime, strftime, time
 import csv
 import config
+import shutil
 
 from abc import ABC, abstractmethod
 
@@ -56,15 +57,20 @@ class GirisVeSunucuIslemleri(ABC):
         # ya da sınavkoduna göre gönderilmesi gerekir.
 
         # taranan formlar (.jpg) dosyaları üstüne yazılıyor
-
+        """
         # --- SONUÇLARIN KAYITEDİLDİĞİ CSV DOSYASI ELDE EDİLİR
         subdir = ''
         timeNowHrs = strftime("%I%p", localtime())
         paths = config.Paths(os.path.join(args['output_dir'], subdir))
         csvDosyaYolu = paths.resultDir + 'Results' + '.csv'
         # ---
-
+        """
         # csvDosyaYolu = "outputs/Results/Results_01AM.csv"
+
+        # CSV DOSYALARI OTOMATİK OLARAK BULUNUR
+        csvDosyaYolu = cls.sonucDosyalariBul()
+        
+
 
         print("sonuc dosya yolu verivegirisislemerinden ", csvDosyaYolu)
 
@@ -91,37 +97,51 @@ class GirisVeSunucuIslemleri(ABC):
                 
                 veriGonder(sinavSonuc)
                 print(sinavSonuc)
-        """    
-        with open(csvDosyaYolu) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            i=0
-            data_set={ }
-            line_count = 0
-            for row in csv_reader:
-                if (len(row)!=0 and line_count!=0):
-                    i=i+1
-                    print(str(i)+"\n")
-                    data_set["ogrenci"]=int(row[5])
-                    data_set["sinav"]=int(row[4])
-                                
-                    for j in range(6,56):
-                        if row[j]!="":
-                            data_set["C"+str(j-5)]=cls.harfToSayi(row[j])
+        """  
+        for csvDosyaYolu in csvDosyaYolu:  
+            with open(csvDosyaYolu) as csv_file:
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                line_count = 0
+                i=0
+                data_set={ }
+                line_count = 0
+                for row in csv_reader:
+                    if (len(row)!=0 and line_count!=0):
+                        i=i+1
+                        print(str(i)+"\n")
+                        data_set["ogrenci"]=int(row[5])
+                        data_set["sinav"]=int(row[4])
                                     
-                    print(data_set) 
-                    # r = requests.post(url = APICEVAPEKLE, data=json.dumps(data_set), headers=headers)
-                    print("----------------------------")
-                    cls.veriGonder(data_set)
-                    # if r.status_code==201:
-                    #     print(str(data_set["ogrenci"]) +" nolu ogrencinin "+str(data_set["sinav"])+" nolu sınav cevapları sunucuya gönderilmiştir...")
-                    # else:
-                    #     print("--- "+r.text)
-                    #     print("--- Status Code:"+str(r.status_code))
-                    # print("----------------------------")
-    
-                data_set={}   
-                line_count +=1    
+                        for j in range(6,56):
+                            if row[j]!="":
+                                data_set["C"+str(j-5)]=cls.harfToSayi(row[j])
+                                        
+                        print(data_set) 
+                        # r = requests.post(url = APICEVAPEKLE, data=json.dumps(data_set), headers=headers)
+                        print("----------------------------")
+                        cls.veriGonder(data_set)
+                        # if r.status_code==201:
+                        #     print(str(data_set["ogrenci"]) +" nolu ogrencinin "+str(data_set["sinav"])+" nolu sınav cevapları sunucuya gönderilmiştir...")
+                        # else:
+                        #     print("--- "+r.text)
+                        #     print("--- Status Code:"+str(r.status_code))
+                        # print("----------------------------")
+        
+                    data_set={}   
+                    line_count +=1    
+        
+        # outputs dosyasının içeriğini siler. Bunun yapmamızın sebebi yeni okuma yapılacağı zaman
+        # sonuç dosyalarının tekrar işlenmemesi
+        # dir_path = os.path.dirname(os.path.realpath(__file__))
+        dir_path = os.path.normpath(os.path.join(__file__, '..', '..'))
+        dir_path = dir_path + r"\outputs"
+        try:
+            shutil.rmtree(dir_path)
+            print("silme işlemi başarılı")
+            os.mkdir(dir_path)
+        except OSError as e:
+            print ("Error: %s - %s." % (e.filename, e.strerror))
+            print("hata oluştu")
                 
         # okunan csv dosyasını json dosyasına çevirir
 
@@ -142,6 +162,40 @@ class GirisVeSunucuIslemleri(ABC):
             return 4
         if harf=='E':
             return 5
+
+### BİRDEN FAZLA SONUÇ DOSYASININ BULUNMASI
+    @classmethod
+    def sonucDosyalariBul(cls):
+        # dir_path = os.path.dirname(os.path.realpath(__file__))
+        dir_path = os.path.normpath(os.path.join(__file__, '..', '..'))
+        dir_path = dir_path + r"\outputs"
+
+        # Dosya adının sınava göre özelleştirilmesi gerekmektedir.
+        filename = "Results.csv"
+
+        # Okunan formların sonuçlarının saklandığı csv dosyası
+        csvDosyaYolu = ""
+
+        print("dosyanın arandığı yol ", dir_path)
+        sonuc_dosyalari = []
+
+        # sonuç dosyasını yani oluşturulan csv bulmak için
+        # csv dosyasının adını sınav koduna göre değiştirmek gerekiyor
+        # csv dosyasının adını oluşturulduğu yerden almak gerekiyor
+        for root, dirs, files in os.walk(dir_path): 
+            for file in files:  
+
+                # change the extension from '.mp3' to  
+                # the one of your choice. 
+                # if file.endswith('.csv'): 
+                #     print(root+'/'+str(file))
+                # print(csvDosyaYolu)
+                if file.endswith(filename):
+                    csvDosyaYolu = root + '\\' + file
+                    print(type(csvDosyaYolu),csvDosyaYolu)
+                    sonuc_dosyalari.append(csvDosyaYolu)
+        print(sonuc_dosyalari)
+        return sonuc_dosyalari
 
     """
     # BU FONKSİYONA GEREK KALMADI
