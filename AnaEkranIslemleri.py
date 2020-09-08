@@ -18,6 +18,8 @@ class App(QMW):
     parola = ""
     token = ""
 
+    kesme_islemi = False
+
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -159,12 +161,14 @@ class App(QMW):
         #self.win.lblSablonDosya.setText("Kopyalandı ozelden")
 
     def kaynakSec(self, rb):
-        if rb.text() == "Tarayıcıdan alındı":
+        if rb.text() == "Kodlama Kısmını Oku":
             if rb.isChecked() == True:
-                self.win.lblKaynakSonuc.setText("Tarayıcı")				
-        if rb.text() == "Fotoğrafı çekildi.":
+                self.win.lblKaynakSonuc.setText("Kesme işlemi uygulanacak.")
+                self.kesme_islemi = False				
+        if rb.text() == "Tamamını Oku":
             if rb.isChecked() == True:
-                self.win.lblKaynakSonuc.setText("Fotoğraf")
+                self.win.lblKaynakSonuc.setText("Kesme işlemi uygulanmayacak.")
+                self.kesme_islemi = True
         
         # self.win.lblKaynakSonuc.setText("oldu")
 
@@ -180,7 +184,7 @@ class App(QMW):
 
     def FormIsle(self):
         print("formların bulunduğu dizin", self.form_kaynak_dizin)
-        main.formlariIsle(self.form_kaynak_dizin)
+        main.formlariIsle(self.form_kaynak_dizin, self.kesme_islemi)
         # self.win.lblFormOkuSonuc.setText(self.root_dir)
         # main2.process_dir(self.root_dir, '', self.template)
 

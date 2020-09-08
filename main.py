@@ -42,9 +42,9 @@ from time import localtime, strftime, time
 # init()
 # from colorama import Fore, Back, Style
 
-def process_dir(root_dir, subdir, template):
+def process_dir(root_dir, subdir, template, kesme_islemi):
     curr_dir = os.path.join(root_dir, subdir)
-
+    args['noCropping'] = bool(kesme_islemi)
     # Look for template in current dir
     template_file = os.path.join(curr_dir, config.TEMPLATE_FILE)
     if os.path.exists(template_file):
@@ -561,8 +561,8 @@ if args['input_dir'] is None:
 # for root in args['input_dir']:
 #     process_dir(root, '', args['template'])
 
-def formlariIsle(form_kaynak_dizin):
+def formlariIsle(form_kaynak_dizin, kesme_islemi):
     #for root in ['ornekler']:
     args['input_dir'] = [form_kaynak_dizin]
     for root in args['input_dir']:
-        process_dir(root, '', args['template'])
+        process_dir(root, '', args['template'], kesme_islemi)
