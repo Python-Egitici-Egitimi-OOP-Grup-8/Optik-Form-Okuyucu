@@ -90,7 +90,7 @@ def process_dir(root_dir, subdir, template, kesme_islemi, onizleme):
 
     # recursively process subfolders
     for folder in subfolders:
-        process_dir(root_dir, os.path.join(subdir, folder), template)
+        process_dir(root_dir, os.path.join(subdir, folder), template, kesme_islemi, onizleme)
 
 
 def checkAndMove(error_code, filepath, filepath2):
