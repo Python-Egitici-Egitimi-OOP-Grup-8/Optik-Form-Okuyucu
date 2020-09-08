@@ -826,7 +826,7 @@ def saveImg(path, final_marked):
     cv2.imwrite(path, final_marked)
 
 
-def readResponse(template, image, name, savedir=None, autoAlign=False):
+def readResponse(template, image, onizleme, name, savedir=None, autoAlign=False):
     global clahe
 
     try:
@@ -1167,7 +1167,8 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
         if(config.showimglvl >= 3 and final_align is not None):
             final_align = resize_util_h(final_align, int(config.display_height))
             # [final_align.shape[1],0])
-            show("Şablon Hizalama Ayarı", final_align, 0, 0)
+            if onizleme == True:
+                show("Şablon Hizalama Ayarı", final_align, 0, 0)
 
         # TODO: refactor "type(savedir) != type(None) "
         if (config.saveMarked and type(savedir) != type(None)):
@@ -1176,8 +1177,9 @@ def readResponse(template, image, name, savedir=None, autoAlign=False):
             saveImg(savedir + name, final_marked)
 
         if(config.showimglvl >= 1):
-            show("Son İşaretli Kabarcıklar : " + name,
-                 resize_util_h(final_marked, int(config.display_height * 1.3)), 1, 1)
+            if onizleme == True:
+                show("Son İşaretli Kabarcıklar : " + name,
+                    resize_util_h(final_marked, int(config.display_height * 1.3)), 1, 1)
 
         appendSaveImg(2, final_marked)
 

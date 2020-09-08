@@ -19,6 +19,7 @@ class App(QMW):
     token = ""
 
     kesme_islemi = False
+    onizleme = False
 
     def __init__(self):
         super().__init__()
@@ -173,18 +174,20 @@ class App(QMW):
         # self.win.lblKaynakSonuc.setText("oldu")
 
     def islemTurSec(self, rb):
-        if rb.text() == "Production":
+        if rb.text() == "Ön İzleme İle":
             if rb.isChecked() == True:
-                self.win.lblIslemSonuc.setText("Production")				
-        if rb.text() == "Debug":
+                self.win.lblIslemSonuc.setText("Formlar okunurken önizlemeleri geçmek için Q tuşuna basınız.")
+                self.onizleme = True				
+        if rb.text() == "Ön İzleme Olmadan":
             if rb.isChecked() == True:
-                self.win.lblIslemSonuc.setText("Debug")
+                self.win.lblIslemSonuc.setText("Önizleme yapılmayacak.")
+                self.onizleme = False
         
         # self.win.lblKaynakSonuc.setText("oldu")
 
     def FormIsle(self):
         print("formların bulunduğu dizin", self.form_kaynak_dizin)
-        main.formlariIsle(self.form_kaynak_dizin, self.kesme_islemi)
+        main.formlariIsle(self.form_kaynak_dizin, self.kesme_islemi, self.onizleme)
         # self.win.lblFormOkuSonuc.setText(self.root_dir)
         # main2.process_dir(self.root_dir, '', self.template)
 

@@ -96,7 +96,7 @@
       <widget class="QRadioButton" name="rdBtnTarayici">
        <property name="text">
         <string>Kodlama Kısmını Oku</string>
-       </property>       
+       </property>
       </widget>
      </item>
      <item row="2" column="0" colspan="2">
@@ -129,7 +129,7 @@
       <widget class="QRadioButton" name="rdBtnSablonVarOlan">
        <property name="text">
         <string>Var olan</string>
-       </property>       
+       </property>
       </widget>
      </item>
      <item row="3" column="1">
@@ -167,7 +167,7 @@
       <x>10</x>
       <y>340</y>
       <width>491</width>
-      <height>67</height>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_4">
@@ -181,18 +181,18 @@
      <item row="1" column="1">
       <widget class="QRadioButton" name="rdBtnProduction">
        <property name="text">
-        <string>Production</string>
+        <string>Ön İzleme İle</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QRadioButton" name="rdBtnDebug">
        <property name="text">
-        <string>Debug</string>
+        <string>Ön İzleme Olmadan</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="3" column="0" colspan="2">
       <widget class="QLabel" name="lblIslemSonuc">
        <property name="text">
         <string>TextLabel</string>

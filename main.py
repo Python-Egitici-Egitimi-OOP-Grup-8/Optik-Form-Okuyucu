@@ -42,7 +42,7 @@ from time import localtime, strftime, time
 # init()
 # from colorama import Fore, Back, Style
 
-def process_dir(root_dir, subdir, template, kesme_islemi):
+def process_dir(root_dir, subdir, template, kesme_islemi, onizleme):
     curr_dir = os.path.join(root_dir, subdir)
     args['noCropping'] = bool(kesme_islemi)
     # Look for template in current dir
@@ -83,7 +83,7 @@ def process_dir(root_dir, subdir, template, kesme_islemi):
 
         utils.setup_dirs(paths)
         output_set = setup_output(paths, template)
-        process_files(omr_files, template, args_local, output_set)
+        process_files(omr_files, template, args_local, output_set, onizleme)
     elif(len(subfolders) == 0):
         # the directory should have images or be non-leaf
         print(f'Bilgi: {curr_dir} klasöründe geçerli bir resim veya alt klasör bulunamadı.')
@@ -303,7 +303,7 @@ def preliminary_check():
 
 
 
-def process_files(omr_files, template, args, out):
+def process_files(omr_files, template, args, out, onizleme):
     start_time = int(time())
     filesCounter = 0
     filesNotMoved = 0
@@ -362,7 +362,7 @@ def process_files(omr_files, template, args, out):
         file_id = inputFolderName + '_' + filename
         savedir = out.paths.saveMarkedDir
         OMRresponseDict, final_marked, MultiMarked, multiroll = \
-            utils.readResponse(template, OMRCrop, name=file_id,
+            utils.readResponse(template, OMRCrop, onizleme, name=file_id,
                          savedir=savedir, autoAlign=args["autoAlign"])
 
         # concatenate roll nos, set unmarked responses, etc
@@ -561,8 +561,8 @@ if args['input_dir'] is None:
 # for root in args['input_dir']:
 #     process_dir(root, '', args['template'])
 
-def formlariIsle(form_kaynak_dizin, kesme_islemi):
+def formlariIsle(form_kaynak_dizin, kesme_islemi, onizleme):
     #for root in ['ornekler']:
     args['input_dir'] = [form_kaynak_dizin]
     for root in args['input_dir']:
-        process_dir(root, '', args['template'], kesme_islemi)
+        process_dir(root, '', args['template'], kesme_islemi, onizleme)
