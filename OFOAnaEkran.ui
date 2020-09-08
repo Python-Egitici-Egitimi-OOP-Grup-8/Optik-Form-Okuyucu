@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
-    <height>576</height>
+    <width>513</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,7 +81,7 @@
      <item row="1" column="1">
       <widget class="QRadioButton" name="rdBtnFotograf">
        <property name="text">
-        <string>Fotoğrafı çekildi.</string>
+        <string>Tamamını Oku</string>
        </property>
       </widget>
      </item>
@@ -95,11 +95,11 @@
      <item row="0" column="1">
       <widget class="QRadioButton" name="rdBtnTarayici">
        <property name="text">
-        <string>Tarayıcıdan alındı</string>
-       </property>
+        <string>Kodlama Kısmını Oku</string>
+       </property>       
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="2" column="0" colspan="2">
       <widget class="QLabel" name="lblKaynakSonuc">
        <property name="text">
         <string>TextLabel</string>
@@ -129,7 +129,7 @@
       <widget class="QRadioButton" name="rdBtnSablonVarOlan">
        <property name="text">
         <string>Var olan</string>
-       </property>
+       </property>       
       </widget>
      </item>
      <item row="3" column="1">
@@ -247,7 +247,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>610</width>
+     <width>513</width>
      <height>21</height>
     </rect>
    </property>
